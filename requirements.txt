@@ -1,4 +1,5 @@
 django
+psycopg-binary
 Pillow
 colorama
 prompt_toolkit
