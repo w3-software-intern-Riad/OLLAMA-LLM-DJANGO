@@ -9,6 +9,7 @@ from prompt_toolkit.styles import Style
 from django.conf import settings
 import requests  # type: ignore
 from decouple import config
+import re
 
 # Initialize Colorama
 init(autoreset=True)
@@ -91,16 +92,23 @@ class Command(BaseCommand):
             config('OLLAMA_URL'),  # Replace with actual port
             json={
                 "model": config('OLLAMA_MODEL'),
-                "prompt": f"Generate a single creative title for '{title}'. Respond with only the title, no additional text or explanations. The title should not include any special characters.",
+                "prompt": f"Generate a single creative title for '{title}'. Your response should contain ONLY the title, with no additional text, explanations, or special characters. The title should be a single line of text.",
                 "stream": False
             }
         )
         if response.status_code == 200:
-            return response.json().get('response', '')
+            generated_text = response.json().get('response', '').strip()
+        
+        # Remove any introductory text before the actual title
+            title_match = re.search(r'^(?:.*?:)?\s*(.+)$', generated_text, re.DOTALL)
+            if title_match:
+                clean_title = title_match.group(1).strip()
+                return clean_title
+            else:
+                return generated_text
         else:
-            self.stdout.write(self.style.ERROR(
-                f"Failed to generate creative title for hotel: {title}"))
-            return None
+            return f"Error: {response.status_code}"
+        
 
     def get_description_from_ollama(self, title):
         response = requests.post(
