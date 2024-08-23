@@ -1,4 +1,5 @@
 django
+psycopg
 psycopg-binary
 Pillow
 colorama
