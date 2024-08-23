@@ -115,27 +115,42 @@ Stores the generated summary and maps it to the corresponding hotel.
 
 ## Setup and Installation
 
-1. **Clone the Repository**
+1. **Run Ollama with Model**
+If there is no ollama then download it 
+```bash
+https://ollama.com/download
+```
+then check the list of model if any model exists type command in terminal
+```bash
+ollama list
+```
+if there is no model then pull model and run it direct command
+
+```bash
+ollama run <model_name>
+```
+
+2. **Clone the Repository**
 ```bash
    git clone https://github.com/w3-software-intern-Riad/OLLAMA-LLM-DJANGO.git
    cd OLLAMA-LLM-DJANGO
    ```
-2. **Create a Virtual Environment and Activate It**   
+3. **Create a Virtual Environment and Activate It**   
 ```bash
 python3 -m venv venv
 source venv/bin/activate # On Windows use `venv\Scripts\activate`
 ```
 
-3. **Create a Virtual Environment and Activate It** 
+4. **Create a Virtual Environment and Activate It** 
 
 ```bash
 pip install -r requirements.txt
 ```
-4. **Configure .env**
+5. **Configure .env**
 ```bash
 create a .env file and configure it as .env.sample
 ```
- 5. **Apply Migrations**
+ 6. **Apply Migrations**
 
 
 
@@ -145,11 +160,13 @@ create a .env file and configure it as .env.sample
  python manage.py migrate
  ```
 
-  6. **Create a Superuser**
+  7. **Create a Superuser**
 
  ```bash
  python manage.py createsuperuser
  ```
+
+
 
   ## Admin Interface
 
