@@ -117,7 +117,7 @@ Stores the generated summary and maps it to the corresponding hotel.
 
 1. **Clone the Repository**
 ```bash
-   git clone <repository-url>
+   git clone https://github.com/w3-software-intern-Riad/OLLAMA-LLM-DJANGO.git
    cd <repository-name>
    ```
 2. **Create a Virtual Environment and Activate It**   
